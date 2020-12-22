@@ -9,34 +9,35 @@ public class day3 {
 
     public static final int X_MAX = 31;
     public static final int Y_MAX = 323;
+    public static final String path = "src/main/resources/input_day3";
+    public static final char[][] map = getMapFromInput();
 
     public static void main(String[] args) {
-        char[][] map = getMapFromInput("src/main/resources/input_day3");
-
         part1(map);
         part2(map);
     }
 
     private static void part1(char[][] map) {
         System.out.println("------ PART 1 ------");
-        int countTrees = getCountTrees(3, 1, map);
+        int countTrees = countTrees(3, 1);
         System.out.println("Answer: " + countTrees);
     }
 
     private static void part2(char[][] map) {
         System.out.println("------ PART 2 ------");
-        int countTrees = getCountTrees(1, 1, map) * getCountTrees(3, 1, map) * getCountTrees(5, 1, map) * getCountTrees(7, 1, map) * getCountTrees(1, 2, map);
+        int countTrees = countTrees(1, 1)
+                * countTrees(3, 1)
+                * countTrees(5, 1)
+                * countTrees(7, 1)
+                * countTrees(1, 2);
         System.out.println("Answer: " + countTrees);
     }
 
 
-    private static char[][] getMapFromInput(String path) {
+    private static char[][] getMapFromInput() {
         List<String> input = getInput(path);
 
-        int xMax = input.get(0).length();
-        int yMax = input.size();
-
-        char[][] map = new char[xMax][yMax];
+        char[][] map = new char[X_MAX][Y_MAX];
 
         int currentX;
         int currentY = 0;
@@ -53,12 +54,11 @@ public class day3 {
         return map;
     }
 
-    private static int getCountTrees(int xSlope, int ySlope, char[][] map) {
-        int currentX;
-        int currentY;
-        currentX = 0;
-        currentY = 0;
+    private static int countTrees(int xSlope, int ySlope) {
+        int currentX = 0;
+        int currentY = 0;
         int countTrees = 0;
+
         while (currentY < Y_MAX - ySlope) {
             currentX += xSlope;
             currentY += ySlope;
@@ -66,7 +66,7 @@ public class day3 {
                 currentX -= X_MAX;
             }
             if (map[currentX][currentY] == '#') {
-                countTrees += 1;
+                countTrees++;
             }
         }
         return countTrees;
