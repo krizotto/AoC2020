@@ -1,6 +1,5 @@
 package day6;
 
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -66,21 +65,22 @@ public class day6 {
                     result.add(c);
                 }
             } else {
-                Group newGroup = new Group();
-                newGroup.getAnswers().addAll(result);
-                newGroup.setNumberOfPeople(numberOfPeople);
-                allGroups.add(newGroup);
+                allGroups.add(createGroup(result, numberOfPeople));
                 result.clear();
                 numberOfPeople = 0;
             }
             if (i == input.size() - 1) {
-                Group newGroup = new Group();
-                newGroup.getAnswers().addAll(result);
-                newGroup.setNumberOfPeople(numberOfPeople);
-                allGroups.add(newGroup);
+                allGroups.add(createGroup(result, numberOfPeople));
             }
         }
         return allGroups;
+    }
+
+    private static Group createGroup(List<Character> answers, int numberOfPeople) {
+        Group newGroup = new Group();
+        newGroup.getAnswers().addAll(answers);
+        newGroup.setNumberOfPeople(numberOfPeople);
+        return newGroup;
     }
 
     public static List<String> getInput() {
