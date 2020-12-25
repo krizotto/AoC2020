@@ -11,6 +11,8 @@ public class day7 {
 
     public static final List<Bag> rules = fillRules();
     private static final String SHINY_GOLD = "shiny gold";
+    public static final String BAGS_CONTAIN_REGEX = "\\s?bags contain\\s?";
+    public static final String BAGS_REGEX = "\\s?\\bbags?\\b([,.]?)\\s?";
 
     public static void main(String[] args) {
         part1();
@@ -18,6 +20,7 @@ public class day7 {
     }
 
     private static void part1() {
+        System.out.println("------ PART 1 ------");
         int count = 0;
         for (Bag rule : rules) {
             count += doesContainShinyGold(rule);
@@ -29,8 +32,8 @@ public class day7 {
         List<Bag> rules = new ArrayList<>();
         for (String s : input) {
             Bag temp = new Bag();
-            final String[] split = s.split("\\s?bags contain\\s?");
-            final String[] bags = split[1].split("\\s?\\bbags?\\b([,.]?)\\s?");
+            final String[] split = s.split(BAGS_CONTAIN_REGEX);
+            final String[] bags = split[1].split(BAGS_REGEX);
             temp.setColor(split[0]);
             for (String bag : bags) {
                 if (bag.charAt(0) == 'n') {
@@ -48,7 +51,10 @@ public class day7 {
     }
 
     private static void part2() {
-        final Optional<Bag> shinyGoldOptional = rules.stream().filter(b -> b.getColor().equals(SHINY_GOLD)).findFirst();
+        System.out.println("------ PART 2 ------");
+        final Optional<Bag> shinyGoldOptional = rules.stream()
+                .filter(b -> b.getColor().equals(SHINY_GOLD))
+                .findFirst();
         shinyGoldOptional.ifPresent(bag -> System.out.println(getCapacity(bag)));
     }
 
@@ -67,7 +73,6 @@ public class day7 {
             }
             return numberContains == 0 ? 0 : 1;
         }
-
     }
 
     private static int getCapacity(Bag bag) {
@@ -82,7 +87,6 @@ public class day7 {
                         .filter(b -> b.getColor().equals(contain))
                         .findAny()
                         .orElseThrow()) + quantity;
-
             }
             return total;
         }
