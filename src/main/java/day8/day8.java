@@ -11,31 +11,54 @@ public class day8 {
 
     public static void main(String[] args) {
         part1();
-       // part2();
+        part2();
     }
 
     private static void part1() {
+        System.out.println("------ PART 1 ------");
         CurrentPos curr = new CurrentPos();
-        checkInfinite(curr);
-        System.out.println(curr.getAcc());
+        System.out.println("There is " + (checkNoLoop(curr) ? "no loop" : "a loop"));
+        System.out.println("Answer: " + curr.getAcc());
+
     }
 
-    private static boolean checkInfinite(CurrentPos curr) {
+    private static boolean checkNoLoop(CurrentPos curr) {
         Set<Integer> oldPos = new HashSet<>();
-        while(true) {
+        while (true) {
             oldPos.add(curr.getPos());
+            if (curr.getPos() == input.size()) {
+                return true;
+            }
             curr = processPos(curr);
             if (oldPos.contains(curr.getPos())) {
                 return false;
-            }
-            if(curr.getPos() == input.size()) {
-                return true;
             }
         }
     }
 
     private static void part2() {
+        System.out.println("------ PART 2 ------");
+        String[] split;
 
+        for (int i = 0; i < input.size(); i++) {
+            CurrentPos curr = new CurrentPos();
+            split = input.get(i).split(" ");
+            if (split[0].equals("nop")) {
+                input.set(i, "jmp " + split[1]);
+                if (checkNoLoop(curr)) {
+                    System.out.println("Answer: " + curr.getAcc());
+                    break;
+                }
+                input.set(i, "nop " + split[1]);
+            } else if (split[0].equals("jmp")) {
+                input.set(i, "nop " + split[1]);
+                if (checkNoLoop(curr)) {
+                    System.out.println("Answer: " + curr.getAcc());
+                    break;
+                }
+                input.set(i, "jmp " + split[1]);
+            }
+        }
     }
 
     private static CurrentPos processPos(CurrentPos curr) {
