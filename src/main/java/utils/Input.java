@@ -1,9 +1,6 @@
 package utils;
 
 
-import day10.day10;
-import day4.day4;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -55,6 +52,7 @@ public class Input {
     public static List<String> getInput(String path) {
         return getInput(path, null);
     }
+
     public static List<String> getInput(String path, String delimiter) {
         Path filePath = Paths.get(path);
         List<String> input = new ArrayList<>();
