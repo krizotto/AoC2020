@@ -1,13 +1,11 @@
 package utils;
 
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
 public class Input {
-
 
     public static List<String> getCharInput(String path) {
 
