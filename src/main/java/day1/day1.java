@@ -1,11 +1,14 @@
 package day1;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import utils.Input;
+
+import java.util.Collections;
+import java.util.List;
 
 public class day1 {
+
+    private static final String PATH = "src/main/resources/input_day1";
+
     public static void main(String[] args) {
         part1();
         part2();
@@ -13,7 +16,7 @@ public class day1 {
 
     private static void part2() {
         System.out.println("------ PART 2 ------");
-        List<Integer> input = getInput();
+        List<Integer> input = Input.getIntInput(PATH);
         int answer = -1;
 
         for (Integer first : input) {
@@ -32,7 +35,7 @@ public class day1 {
         System.out.println("------ PART 1 ------");
         int lowerAnswer = -1;
         int higherAnswer = -1;
-        List<Integer> input = getInput();
+        List<Integer> input = Input.getIntInput(PATH);
         Collections.sort(input);
 
         int bottom = 0;
@@ -59,25 +62,5 @@ public class day1 {
             System.out.println("Answer: " + lowerAnswer * higherAnswer);
         }
 
-    }
-
-    private static List<Integer> getInput() {
-        Path filePath = Paths.get("src/main/resources/input_day1");
-        List<Integer> input = new ArrayList<>();
-        Scanner scanner;
-        try {
-            scanner = new Scanner(filePath);
-            while (scanner.hasNext()) {
-                if (scanner.hasNextInt()) {
-                    input.add(scanner.nextInt());
-                } else {
-                    scanner.next();
-                }
-            }
-            scanner.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Optional.of(input).orElse(Collections.emptyList());
     }
 }

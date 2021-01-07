@@ -1,17 +1,18 @@
 package day11;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import utils.Input;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class day11 {
-    public static final String path = "src/main/resources/input_day11";
-    public static final List<String> input = getInputFromFile();
+
     public static final int colsCount = 98;
     public static final int rowsCount = 93;
     public static final String OCCUPIED = "#";
     public static final String EMPTY = "L";
+    private static final String path = "src/main/resources/input_day11";
+    public static final List<String> input = Input.getCharInput(path);
     public static List<String> copyOfState;
 
     public static void main(String[] args) {
@@ -53,7 +54,7 @@ public class day11 {
         System.out.println("------ PART 2 ------");
         boolean stateChanged;
         input.clear();
-        input.addAll(getInputFromFile());
+        input.addAll(Input.getCharInput(path));
         copyOfState = new ArrayList<>(input);
         do {
             // printTable();
@@ -189,26 +190,5 @@ public class day11 {
 
     private static int checkCurrent(int currentRow, int currentCol) {
         return checkInput(currentRow, currentCol).equals(OCCUPIED) ? 1 : 0;
-    }
-
-
-    private static List<String> getInputFromFile() {
-
-        Path filePath = Paths.get(path);
-        List<String> input = new ArrayList<>();
-        Scanner scanner;
-        try {
-            scanner = new Scanner(filePath).useDelimiter("");
-            while (scanner.hasNext()) {
-                final String next = scanner.next();
-                if (!next.equals("\n")) {
-                    input.add(next);
-                }
-            }
-            scanner.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Optional.of(input).orElse(Collections.emptyList());
     }
 }

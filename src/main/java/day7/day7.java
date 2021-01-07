@@ -1,18 +1,19 @@
 package day7;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import utils.Input;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class day7 {
-    public static final String path = "src/main/resources/input_day7";
-    public static final List<String> input = getInput();
 
-    public static final List<Bag> rules = fillRules();
-    private static final String SHINY_GOLD = "shiny gold";
     public static final String BAGS_CONTAIN_REGEX = "\\s?bags contain\\s?";
     public static final String BAGS_REGEX = "\\s?\\bbags?\\b([,.]?)\\s?";
+    public static final List<Bag> rules = fillRules();
+    private static final String path = "src/main/resources/input_day7";
+    public static final List<String> input = Input.getInput(path, "\\.\n");
+    private static final String SHINY_GOLD = "shiny gold";
 
     public static void main(String[] args) {
         part1();
@@ -90,21 +91,5 @@ public class day7 {
             }
             return total;
         }
-    }
-
-    private static List<String> getInput() {
-        Path filePath = Paths.get(path);
-        List<String> input = new ArrayList<>();
-        Scanner scanner;
-        try {
-            scanner = new Scanner(filePath).useDelimiter("\\.\n");
-            while (scanner.hasNext()) {
-                input.add(scanner.next());
-            }
-            scanner.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Optional.of(input).orElse(Collections.emptyList());
     }
 }

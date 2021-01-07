@@ -1,13 +1,15 @@
 package day10;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import utils.Input;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public class day10 {
-    public static final String path = "src/main/resources/input_day10";
-    public static final List<Integer> input = getInput();
+
+    private static final String path = "src/main/resources/input_day10";
+    public static final List<Integer> input = Input.getIntInput(path);
 
     public static void main(String[] args) {
         part1();
@@ -26,26 +28,5 @@ public class day10 {
             }
         }
         System.out.println("Answer: " + (count.get(1) * count.get(3)));
-    }
-
-
-    private static List<Integer> getInput() {
-        Path filePath = Paths.get(path);
-        List<Integer> input = new ArrayList<>();
-        Scanner scanner;
-        try {
-            scanner = new Scanner(filePath);
-            while (scanner.hasNext()) {
-                if (scanner.hasNextInt()) {
-                    input.add(scanner.nextInt());
-                } else {
-                    scanner.next();
-                }
-            }
-            scanner.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Optional.of(input).orElse(Collections.emptyList());
     }
 }

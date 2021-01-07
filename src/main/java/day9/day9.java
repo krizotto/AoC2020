@@ -1,14 +1,15 @@
 package day9;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import utils.Input;
+
+import java.util.Comparator;
+import java.util.List;
 
 public class day9 {
-    public static final String path = "src/main/resources/input_day9";
+
     public static final int preambleSize = 25;
-    public static final List<Integer> input = getInput();
+    private static final String path = "src/main/resources/input_day9";
+    public static final List<Integer> input = Input.getIntInput(path);
     public static int invalidNumber;
 
     public static void main(String[] args) {
@@ -69,26 +70,5 @@ public class day9 {
         }
         return false;
 
-    }
-
-
-    private static List<Integer> getInput() {
-        Path filePath = Paths.get(path);
-        List<Integer> input = new ArrayList<>();
-        Scanner scanner;
-        try {
-            scanner = new Scanner(filePath);
-            while (scanner.hasNext()) {
-                if (scanner.hasNextInt()) {
-                    input.add(scanner.nextInt());
-                } else {
-                    scanner.next();
-                }
-            }
-            scanner.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Optional.of(input).orElse(Collections.emptyList());
     }
 }

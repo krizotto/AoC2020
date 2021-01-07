@@ -92,10 +92,6 @@ public class Passport {
         isPassportValid = passportValid;
     }
 
-    public boolean isNorthPoleCredential() {
-        return isNorthPoleCredential;
-    }
-
     public void setNorthPoleCredential(boolean northPoleCredential) {
         isNorthPoleCredential = northPoleCredential;
     }
@@ -170,15 +166,13 @@ public class Passport {
 
     private boolean heightValidation() {
         final String height = this.getHeight();
+        int value = Integer.parseInt(height.substring(0, height.length() - 2));
         if (height.contains("cm")) {
-            int value = Integer.parseInt(height.substring(0, height.length() - 2));
             return value >= 150 && value <= 193;
         } else if (height.contains("in")) {
-            int value = Integer.parseInt(height.substring(0, height.length() - 2));
             return value >= 59 && value <= 76;
         }
         return false;
-
 
     }
 
@@ -189,7 +183,6 @@ public class Passport {
     private boolean eyeColorValidation() {
         List<String> possible = Arrays.asList("amb", "blu", "brn", "gry", "grn", "hzl", "oth");
         return possible.contains(this.getEyeColor());
-
     }
 
     private boolean passportIdValidation() {

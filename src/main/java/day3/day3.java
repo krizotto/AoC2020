@@ -1,29 +1,28 @@
 package day3;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import utils.Input;
+
+import java.util.List;
 
 public class day3 {
 
     public static final int X_MAX = 31;
     public static final int Y_MAX = 323;
-    public static final String path = "src/main/resources/input_day3";
+    private static final String path = "src/main/resources/input_day3";
     public static final char[][] map = getMapFromInput();
 
     public static void main(String[] args) {
-        part1(map);
-        part2(map);
+        part1();
+        part2();
     }
 
-    private static void part1(char[][] map) {
+    private static void part1() {
         System.out.println("------ PART 1 ------");
         int countTrees = countTrees(3, 1);
         System.out.println("Answer: " + countTrees);
     }
 
-    private static void part2(char[][] map) {
+    private static void part2() {
         System.out.println("------ PART 2 ------");
         int countTrees = countTrees(1, 1)
                 * countTrees(3, 1)
@@ -35,7 +34,7 @@ public class day3 {
 
 
     private static char[][] getMapFromInput() {
-        List<String> input = getInput(path);
+        List<String> input = Input.getInput(path);
 
         char[][] map = new char[X_MAX][Y_MAX];
 
@@ -72,20 +71,4 @@ public class day3 {
         return countTrees;
     }
 
-
-    public static List<String> getInput(String path) {
-        Path filePath = Paths.get(path);
-        List<String> input = new ArrayList<>();
-        Scanner scanner;
-        try {
-            scanner = new Scanner(filePath);
-            while (scanner.hasNext()) {
-                input.add(scanner.next());
-            }
-            scanner.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Optional.of(input).orElse(Collections.emptyList());
-    }
 }

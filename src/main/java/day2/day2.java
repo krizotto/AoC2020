@@ -1,13 +1,14 @@
 package day2;
 
 import org.apache.commons.lang3.StringUtils;
+import utils.Input;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import java.util.List;
 
 public class day2 {
+
+    private static final String path = "src/main/resources/input_day2";
+
     public static void main(String[] args) {
         part1();
         part2();
@@ -15,7 +16,7 @@ public class day2 {
 
     private static void part2() {
         System.out.println("------ PART 2 ------");
-        List<String> input = getInput("src/main/resources/input_day2");
+        List<String> input = Input.getInput(path);
         int totalCorrect = 0;
 
         for (int i = 2; i < input.size(); i += 3) {
@@ -42,7 +43,7 @@ public class day2 {
 
     private static void part1() {
         System.out.println("------ PART 1 ------");
-        List<String> input = getInput("src/main/resources/input_day2");
+        List<String> input = Input.getInput(path);
         int totalCorrect = 0;
 
         for (int i = 2; i < input.size(); i += 3) {
@@ -62,21 +63,5 @@ public class day2 {
             return 1;
         }
         return 0;
-    }
-
-    public static List<String> getInput(String path) {
-        Path filePath = Paths.get(path);
-        List<String> input = new ArrayList<>();
-        Scanner scanner;
-        try {
-            scanner = new Scanner(filePath);
-            while (scanner.hasNext()) {
-                input.add(scanner.next());
-            }
-            scanner.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Optional.of(input).orElse(Collections.emptyList());
     }
 }

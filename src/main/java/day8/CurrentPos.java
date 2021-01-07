@@ -5,7 +5,7 @@ public class CurrentPos {
     int acc;
 
     public CurrentPos() {
-        this(0,0);
+        this(0, 0);
     }
 
     public CurrentPos(int pos, int acc) {
@@ -29,8 +29,4 @@ public class CurrentPos {
         this.acc = acc;
     }
 
-    public void reset() {
-        this.acc = 0;
-        this.pos = 0;
-    }
 }

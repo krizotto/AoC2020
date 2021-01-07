@@ -1,8 +1,7 @@
 package day5;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import utils.Input;
+
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -10,11 +9,12 @@ import static java.util.function.Predicate.not;
 import static java.util.stream.Collectors.toSet;
 
 public class day5 {
+
     private static final String path = "src/main/resources/input_day5";
     private static final List<BoardingPass> passes = new ArrayList<>();
 
     public static void main(String[] args) {
-        for (String s : getInput()) {
+        for (String s : Input.getInput(path)) {
             BoardingPass temp = new BoardingPass();
             temp.setCode(s);
             passes.add(temp);
@@ -98,22 +98,5 @@ public class day5 {
             }
 
         }
-    }
-
-
-    private static List<String> getInput() {
-        Path filePath = Paths.get(path);
-        List<String> input = new ArrayList<>();
-        Scanner scanner;
-        try {
-            scanner = new Scanner(filePath);
-            while (scanner.hasNext()) {
-                input.add(scanner.next());
-            }
-            scanner.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Optional.of(input).orElse(Collections.emptyList());
     }
 }

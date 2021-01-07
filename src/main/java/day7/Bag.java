@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Bag {
     public static final String SHINY_GOLD = "shiny gold";
-    private String color;
     private final List<String> contains = new ArrayList<>();
     private final List<Integer> quantities = new ArrayList<>();
+    private String color;
 
     public Bag() {
     }

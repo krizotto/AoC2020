@@ -1,13 +1,15 @@
 package day8;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import utils.Input;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class day8 {
-    public static final String path = "src/main/resources/input_day8";
-    public static final List<String> input = getInput();
+
+    private static final String path = "src/main/resources/input_day8";
+    public static final List<String> input = Input.getInput(path, "\n");
 
     public static void main(String[] args) {
         part1();
@@ -77,21 +79,5 @@ public class day8 {
                 break;
         }
         return curr;
-    }
-
-    private static List<String> getInput() {
-        Path filePath = Paths.get(path);
-        List<String> input = new ArrayList<>();
-        Scanner scanner;
-        try {
-            scanner = new Scanner(filePath).useDelimiter("\n");
-            while (scanner.hasNext()) {
-                input.add(scanner.next());
-            }
-            scanner.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Optional.of(input).orElse(Collections.emptyList());
     }
 }

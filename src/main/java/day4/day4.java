@@ -1,13 +1,14 @@
 package day4;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import utils.Input;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class day4 {
 
-    public static final String path = "src/main/resources/input_day4";
+    private static final String path = "src/main/resources/input_day4";
 
     public static void main(String[] args) {
         part1();
@@ -16,7 +17,7 @@ public class day4 {
 
     private static void part2() {
         System.out.println("------ PART 2 ------");
-        List<String> input = getInput();
+        List<String> input = Input.getInput(path, "\n");
         List<Passport> passports = getPassports(input);
 
         //Extended validation
@@ -35,7 +36,7 @@ public class day4 {
 
     private static void part1() {
         System.out.println("------ PART 1 ------");
-        List<String> input = getInput();
+        List<String> input = Input.getInput(path, "\n");
         List<Passport> passports = getPassports(input);
 
         //EasyValidation
@@ -109,19 +110,4 @@ public class day4 {
     }
 
 
-    public static List<String> getInput() {
-        Path filePath = Paths.get(path);
-        List<String> input = new ArrayList<>();
-        Scanner scanner;
-        try {
-            scanner = new Scanner(filePath).useDelimiter("\n");
-            while (scanner.hasNext()) {
-                input.add(scanner.next());
-            }
-            scanner.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Optional.of(input).orElse(Collections.emptyList());
-    }
 }

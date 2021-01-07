@@ -1,15 +1,16 @@
 package day6;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import utils.Input;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class day6 {
 
-    public static final String path = "src/main/resources/input_day6";
-    public static final List<String> input = getInput();
+    private static final String path = "src/main/resources/input_day6";
+    public static final List<String> input = Input.getInput(path, "\n");
 
     public static void main(String[] args) {
         part1();
@@ -81,21 +82,5 @@ public class day6 {
         newGroup.getAnswers().addAll(answers);
         newGroup.setNumberOfPeople(numberOfPeople);
         return newGroup;
-    }
-
-    public static List<String> getInput() {
-        Path filePath = Paths.get(path);
-        List<String> input = new ArrayList<>();
-        Scanner scanner;
-        try {
-            scanner = new Scanner(filePath).useDelimiter("\n");
-            while (scanner.hasNext()) {
-                input.add(scanner.next());
-            }
-            scanner.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Optional.of(input).orElse(Collections.emptyList());
     }
 }
