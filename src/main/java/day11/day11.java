@@ -30,13 +30,14 @@ public class day11 {
             for (int r = 0; r < rowsCount; r++) {
                 for (int c = 0; c < colsCount; c++) {
                     String s = checkInput(r, c);
+                    final int occupiedSeats = countAdjacentOccupiedSeats(r, c);
                     if (s.equals(EMPTY)) {
-                        if (countAdjacentOccupiedSeats(r, c) == 0) {
+                        if (occupiedSeats == 0) {
                             setInput(r, c, OCCUPIED);
                             stateChanged = true;
                         }
                     } else if (s.equals(OCCUPIED)) {
-                        if (countAdjacentOccupiedSeats(r, c) >= 4) {
+                        if (occupiedSeats >= 4) {
                             setInput(r, c, EMPTY);
                             stateChanged = true;
                         }
@@ -62,13 +63,14 @@ public class day11 {
             for (int r = 0; r < rowsCount; r++) {
                 for (int c = 0; c < colsCount; c++) {
                     String s = checkInput(r, c);
+                    final int occupiedSeats = countDimensionsOccupiedSeats(r, c);
                     if (s.equals(EMPTY)) {
-                        if (countDimensionsOccupiedSeats(r, c) == 0) {
+                        if (occupiedSeats == 0) {
                             setInput(r, c, OCCUPIED);
                             stateChanged = true;
                         }
                     } else if (s.equals(OCCUPIED)) {
-                        if (countDimensionsOccupiedSeats(r, c) >= 5) {
+                        if (occupiedSeats >= 5) {
                             setInput(r, c, EMPTY);
                             stateChanged = true;
                         }
