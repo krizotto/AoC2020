@@ -1,40 +1,33 @@
-package day3;
+package day03;
 
 import utils.Input;
+import utils.Solution;
 
 import java.util.List;
 
-public class day3 {
+public class day03 extends Solution {
 
-    public static final int X_MAX = 31;
-    public static final int Y_MAX = 323;
-    private static final String path = "src/main/resources/input_day3";
-    public static final char[][] map = getMapFromInput();
+    public final int X_MAX = 31;
+    public final int Y_MAX = 323;
+    public final char[][] map = getMapFromInput();
 
-    public static void main(String[] args) {
-        part1();
-        part2();
+    @Override
+    public Object part1() {
+        return countTrees(3, 1);
     }
 
-    private static void part1() {
-        System.out.println("------ PART 1 ------");
-        int countTrees = countTrees(3, 1);
-        System.out.println("Answer: " + countTrees);
-    }
-
-    private static void part2() {
-        System.out.println("------ PART 2 ------");
-        int countTrees = countTrees(1, 1)
+    @Override
+    public Object part2() {
+        return countTrees(1, 1)
                 * countTrees(3, 1)
                 * countTrees(5, 1)
                 * countTrees(7, 1)
                 * countTrees(1, 2);
-        System.out.println("Answer: " + countTrees);
     }
 
 
-    private static char[][] getMapFromInput() {
-        List<String> input = Input.getInput(path);
+    private char[][] getMapFromInput() {
+        List<String> input = Input.getInput(PATH);
 
         char[][] map = new char[X_MAX][Y_MAX];
 
@@ -53,7 +46,7 @@ public class day3 {
         return map;
     }
 
-    private static int countTrees(int xSlope, int ySlope) {
+    private int countTrees(int xSlope, int ySlope) {
         int currentX = 0;
         int currentY = 0;
         int countTrees = 0;

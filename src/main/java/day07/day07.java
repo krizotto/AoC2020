@@ -1,4 +1,4 @@
-package day7;
+package day07;
 
 import utils.Input;
 
@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class day7 {
+public class day07 {
 
     public static final String BAGS_CONTAIN_REGEX = "\\s?bags contain\\s?";
     public static final String BAGS_REGEX = "\\s?\\bbags?\\b([,.]?)\\s?";
     public static final List<Bag> rules = fillRules();
-    private static final String path = "src/main/resources/input_day7";
+    private static final String path = "src/main/resources/input_day07";
     public static final List<String> input = Input.getInput(path, "\\.\n");
     private static final String SHINY_GOLD = "shiny gold";
 

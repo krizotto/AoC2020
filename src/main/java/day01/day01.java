@@ -1,21 +1,15 @@
-package day1;
+package day01;
 
 import utils.Input;
+import utils.Solution;
 
 import java.util.Collections;
 import java.util.List;
 
-public class day1 {
+public class day01 extends Solution {
 
-    private static final String PATH = "src/main/resources/input_day1";
-
-    public static void main(String[] args) {
-        part1();
-        part2();
-    }
-
-    private static void part2() {
-        System.out.println("------ PART 2 ------");
+    @Override
+    public Object part2() {
         List<Integer> input = Input.getIntInput(PATH);
         int answer = -1;
 
@@ -27,12 +21,11 @@ public class day1 {
                 }
             }
         }
-        System.out.println("Answer: " + answer);
-
+        return answer;
     }
 
-    private static void part1() {
-        System.out.println("------ PART 1 ------");
+    @Override
+    public Object part1() {
         int lowerAnswer = -1;
         int higherAnswer = -1;
         List<Integer> input = Input.getIntInput(PATH);
@@ -57,9 +50,9 @@ public class day1 {
             }
         }
         if (lowerAnswer < 0 || higherAnswer < 0) {
-            System.out.println("NO ANSWER!");
+            return "NO ANSWER!";
         } else {
-            System.out.println("Answer: " + lowerAnswer * higherAnswer);
+           return (lowerAnswer * higherAnswer);
         }
 
     }

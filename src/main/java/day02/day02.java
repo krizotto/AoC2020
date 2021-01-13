@@ -1,22 +1,16 @@
-package day2;
+package day02;
 
 import org.apache.commons.lang3.StringUtils;
 import utils.Input;
+import utils.Solution;
 
 import java.util.List;
 
-public class day2 {
+public class day02 extends Solution {
 
-    private static final String path = "src/main/resources/input_day2";
-
-    public static void main(String[] args) {
-        part1();
-        part2();
-    }
-
-    private static void part2() {
-        System.out.println("------ PART 2 ------");
-        List<String> input = Input.getInput(path);
+    @Override
+    public Object part2() {
+        List<String> input = Input.getInput(PATH);
         int totalCorrect = 0;
 
         for (int i = 2; i < input.size(); i += 3) {
@@ -27,11 +21,11 @@ public class day2 {
 
             totalCorrect += validatePassword2(input.get(i), checkedChar, firstPosition - 1, secondPosition - 1);
         }
-        System.out.println("Answer: " + totalCorrect);
+        return totalCorrect;
 
     }
 
-    private static int validatePassword2(String password, char checkedChar, int firstPosition, int secondPosition) {
+    private int validatePassword2(String password, char checkedChar, int firstPosition, int secondPosition) {
         final char[] charPassword = password.toCharArray();
         boolean firstPresent = charPassword[firstPosition] == checkedChar;
         boolean secondPresent = charPassword[secondPosition] == checkedChar;
@@ -41,9 +35,9 @@ public class day2 {
         return 0;
     }
 
-    private static void part1() {
-        System.out.println("------ PART 1 ------");
-        List<String> input = Input.getInput(path);
+    @Override
+    public Object part1() {
+        List<String> input = Input.getInput(PATH);
         int totalCorrect = 0;
 
         for (int i = 2; i < input.size(); i += 3) {
@@ -54,10 +48,10 @@ public class day2 {
 
             totalCorrect += validatePassword1(input.get(i), checkedChar, min, max);
         }
-        System.out.println("Answer: " + totalCorrect);
+        return totalCorrect;
     }
 
-    private static int validatePassword1(String password, char checkedChar, int min, int max) {
+    private int validatePassword1(String password, char checkedChar, int min, int max) {
         final int count = StringUtils.countMatches(password, String.valueOf(checkedChar));
         if (count >= min && count <= max) {
             return 1;

@@ -1,4 +1,4 @@
-package day4;
+package day04;
 
 import utils.Input;
 
@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class day4 {
+public class day04 {
 
-    private static final String path = "src/main/resources/input_day4";
+    private static final String path = "src/main/resources/input_day04";
 
     public static void main(String[] args) {
         part1();
@@ -17,7 +17,7 @@ public class day4 {
 
     private static void part2() {
         System.out.println("------ PART 2 ------");
-        List<String> input = Input.getInput(path, "\n");
+        List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
         List<Passport> passports = getPassports(input);
 
         //Extended validation
@@ -36,7 +36,7 @@ public class day4 {
 
     private static void part1() {
         System.out.println("------ PART 1 ------");
-        List<String> input = Input.getInput(path, "\n");
+        List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
         List<Passport> passports = getPassports(input);
 
         //EasyValidation

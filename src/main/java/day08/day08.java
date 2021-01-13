@@ -1,4 +1,4 @@
-package day8;
+package day08;
 
 import utils.Input;
 
@@ -6,10 +6,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class day8 {
+public class day08 {
 
-    private static final String path = "src/main/resources/input_day8";
-    public static final List<String> input = Input.getInput(path, "\n");
+    private static final String path = "src/main/resources/input_day08";
+    public static final List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
 
     public static void main(String[] args) {
         part1();

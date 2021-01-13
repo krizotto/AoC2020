@@ -1,14 +1,14 @@
-package day9;
+package day09;
 
 import utils.Input;
 
 import java.util.Comparator;
 import java.util.List;
 
-public class day9 {
+public class day09 {
 
     public static final int preambleSize = 25;
-    private static final String path = "src/main/resources/input_day9";
+    private static final String path = "src/main/resources/input_day09";
     public static final List<Integer> input = Input.getIntInput(path);
     public static int invalidNumber;
 

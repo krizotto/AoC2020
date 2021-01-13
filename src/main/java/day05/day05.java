@@ -1,4 +1,4 @@
-package day5;
+package day05;
 
 import utils.Input;
 
@@ -8,9 +8,9 @@ import java.util.stream.IntStream;
 import static java.util.function.Predicate.not;
 import static java.util.stream.Collectors.toSet;
 
-public class day5 {
+public class day05 {
 
-    private static final String path = "src/main/resources/input_day5";
+    private static final String path = "src/main/resources/input_day05";
     private static final List<BoardingPass> passes = new ArrayList<>();
 
     public static void main(String[] args) {

@@ -1,11 +1,11 @@
-package day5;
+package day05;
 
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 
-public class day5Test {
+public class day05Test {
 
     @Test
     public void shouldFindSeat() {
@@ -13,7 +13,7 @@ public class day5Test {
         bp.setCode("FBFBBFFRLR");
         int expectedRow = 44;
         int expectedColumn = 5;
-        day5.findSeat(bp);
+        day05.findSeat(bp);
         assertEquals(expectedRow, bp.getRow());
         assertEquals(expectedColumn, bp.getColumn());
     }
@@ -24,7 +24,7 @@ public class day5Test {
         bp.setRow(44);
         bp.setColumn(5);
         int expectedId = 357;
-        day5.countId(bp);
+        day05.countId(bp);
         assertEquals(expectedId, bp.getId());
     }
 

@@ -7,13 +7,16 @@ import java.util.*;
 
 public class Input {
 
+    public static final String NEW_LINE_DELIMITER = "\n";
+    public static final String EVERY_CHARACTER_DELIMITER = "";
+
     public static List<String> getCharInput(String path) {
 
         Path filePath = Paths.get(path);
         List<String> input = new ArrayList<>();
         Scanner scanner;
         try {
-            scanner = new Scanner(filePath).useDelimiter("");
+            scanner = new Scanner(filePath).useDelimiter(EVERY_CHARACTER_DELIMITER);
             while (scanner.hasNext()) {
                 final String next = scanner.next();
                 if (!next.equals("\n")) {
