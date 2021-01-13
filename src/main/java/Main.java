@@ -19,7 +19,10 @@ public class Main {
 
             if (day == 99) {
                 for (int i = 1; i <= MAX_SOLUTION_DAY; i++) {
+                    long startTime = System.nanoTime();
                     getSolution(i);
+                    long stopTime = System.nanoTime();
+                    System.out.printf("Execution time: %.2f ms.\n", ((double) stopTime - (double) startTime)/1000000);
                 }
                 break;
             }
@@ -27,12 +30,37 @@ public class Main {
             if (day > 0 && day < 26) {
                 getSolution(day);
             }
+
+            //performance test
+            if (day == 98) {
+                for (int i = 1; i <= MAX_SOLUTION_DAY; i++) {
+                    System.out.printf("Day %d:", i);
+                    long startTime = System.nanoTime();
+                    int precision = 1000;
+                    if (i == 7) {
+                        precision = 10;
+                    }
+                    for (int j = 0; j < precision; j++) {
+                        getNoSolution(i);
+                    }
+                    long stopTime = System.nanoTime();
+                    double result = ((double) stopTime - (double) startTime) / (100000 * precision);
+                    System.out.printf(" %.2f ms\n", result);
+                }
+                break;
+            }
         }
 
         System.out.println();
         System.out.println("Happy Holidays!");
         scanner.close();
 
+    }
+
+    private static void getNoSolution(int i) throws Exception {
+        final Solution solution = Solution.getSolution(i);
+        solution.part1();
+        solution.part2();
     }
 
     private static void getSolution(int i) throws Exception {
