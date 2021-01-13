@@ -166,7 +166,10 @@ public class Passport {
 
     private boolean heightValidation() {
         final String height = this.getHeight();
-        int value = Integer.parseInt(height.substring(0, height.length() - 2));
+
+        final String substring = height.substring(0, height.length() - 2);
+        if (substring.equals("")) return false;
+        int value = Integer.parseInt(substring);
         if (height.contains("cm")) {
             return value >= 150 && value <= 193;
         } else if (height.contains("in")) {

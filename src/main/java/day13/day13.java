@@ -1,19 +1,18 @@
 package day13;
 
 import utils.Input;
+import utils.Solution;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class day13 {
-    private static final String path = "src/main/resources/input_day13";
-    private static final List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
-    private static final List<Integer> availableBuses = new ArrayList<>();
-    private static final int timestamp = Integer.parseInt(input.get(0));
+public class day13 extends Solution {
+    private final List<String> input = Input.getInput(PATH, Input.NEW_LINE_DELIMITER);
+    private final List<Integer> availableBuses = new ArrayList<>();
+    private final int timestamp = Integer.parseInt(input.get(0));
 
-    public static void main(String[] args) {
-        //prepare busses
+    public void prepareBusses() {
         final String[] busesList = input.get(1).split(",");
         for (String bus : busesList) {
             if (!bus.equals("x")) {
@@ -22,13 +21,11 @@ public class day13 {
                 availableBuses.add(-1);
             }
         }
-
-        part1();
-        part2();
     }
 
-    private static void part1() {
-        System.out.println("------ PART 1 ------");
+    @Override
+    public Object part1() {
+        prepareBusses();
         int closestTimeToWait = Integer.MAX_VALUE;
         int closestBus = 0;
         for (Integer bus : availableBuses) {
@@ -39,11 +36,11 @@ public class day13 {
                 closestBus = bus;
             }
         }
-        System.out.println(closestBus * closestTimeToWait);
+        return closestBus * closestTimeToWait;
     }
 
-    private static void part2() {
-        System.out.println("------ PART 2 ------");
+    @Override
+    public Object part2() {
         final List<Indexer> busses = new ArrayList<>();
         for (int i = 0; i < availableBuses.size(); i++) {
             if (availableBuses.get(i) != -1) {
@@ -62,8 +59,6 @@ public class day13 {
             }
             increment *= indexer.getValue();
         }
-        System.out.println(time);
-
+        return time;
     }
-
 }

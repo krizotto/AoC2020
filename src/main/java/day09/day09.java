@@ -1,24 +1,19 @@
 package day09;
 
 import utils.Input;
+import utils.Solution;
 
 import java.util.Comparator;
 import java.util.List;
 
-public class day09 {
+public class day09 extends Solution {
 
-    public static final int preambleSize = 25;
-    private static final String path = "src/main/resources/input_day09";
-    public static final List<Integer> input = Input.getIntInput(path);
-    public static int invalidNumber;
+    public final int preambleSize = 25;
+    public final List<Integer> input = Input.getIntInput(PATH);
+    public int invalidNumber;
 
-    public static void main(String[] args) {
-        part1();
-        part2();
-    }
-
-    private static void part2() {
-        System.out.println("------ PART 2 ------");
+    @Override
+    public Object part2() {
         int beginIndex, endIndex;
         for (int i = 0; i < input.size(); i++) {
             int sum = 0;
@@ -31,7 +26,7 @@ public class day09 {
                     if (subList.size() > 1) {
                         int min = subList.stream().min(Comparator.naturalOrder()).get();
                         int max = subList.stream().max(Comparator.naturalOrder()).get();
-                        System.out.println("Answer: " + (min + max));
+                        return (min + max);
                     }
                     break;
                 } else if (sum > invalidNumber) {
@@ -41,21 +36,22 @@ public class day09 {
             }
 
         }
+        return "....";
     }
 
-    private static void part1() {
-        System.out.println("------ PART 1 ------");
+    @Override
+    public Object part1() {
         for (int i = preambleSize; i < input.size(); i++) {
             int result = input.get(i);
             if (!checkSums(i, result)) {
                 invalidNumber = input.get(i);
-                System.out.println("Answer: " + invalidNumber);
-                break;
+                return invalidNumber;
             }
         }
+        return "....";
     }
 
-    private static boolean checkSums(int i, int result) {
+    private boolean checkSums(int i, int result) {
         List<Integer> preambleList = input.subList(i - preambleSize, i);
         for (int j = 0; j < preambleSize; j++) {
             for (int k = 0; k < preambleSize; k++) {
@@ -69,6 +65,5 @@ public class day09 {
 
         }
         return false;
-
     }
 }

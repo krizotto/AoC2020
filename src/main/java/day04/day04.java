@@ -1,23 +1,17 @@
 package day04;
 
 import utils.Input;
+import utils.Solution;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class day04 {
+public class day04 extends Solution {
 
-    private static final String path = "src/main/resources/input_day04";
-
-    public static void main(String[] args) {
-        part1();
-        part2();
-    }
-
-    private static void part2() {
-        System.out.println("------ PART 2 ------");
-        List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
+    @Override
+    public Object part2() {
+        List<String> input = Input.getInput(PATH, Input.NEW_LINE_DELIMITER);
         List<Passport> passports = getPassports(input);
 
         //Extended validation
@@ -28,15 +22,14 @@ public class day04 {
             }
         }
 
-        long count = passports.stream()
+        return passports.stream()
                 .filter(passport -> passport.isPassportValid())
                 .count();
-        System.out.println("Answer: " + count);
     }
 
-    private static void part1() {
-        System.out.println("------ PART 1 ------");
-        List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
+    @Override
+    public Object part1() {
+        List<String> input = Input.getInput(PATH, Input.NEW_LINE_DELIMITER);
         List<Passport> passports = getPassports(input);
 
         //EasyValidation
@@ -44,13 +37,12 @@ public class day04 {
             passport.easyValidate();
         }
 
-        long count = passports.stream()
+        return passports.stream()
                 .filter(passport -> passport.isPassportValid())
                 .count();
-        System.out.println("Answer: " + count);
     }
 
-    private static List<Passport> getPassports(List<String> input) {
+    private List<Passport> getPassports(List<String> input) {
         List<Passport> possiblePassports = new ArrayList<>();
         //Get all passports
         List<String> parameters = new ArrayList<>();
@@ -73,7 +65,7 @@ public class day04 {
     }
 
 
-    private static Passport createPassport(List<String> params) {
+    private Passport createPassport(List<String> params) {
         Passport tmpPassport = new Passport();
         for (String param : params) {
             final String[] paramValue = param.split(":");

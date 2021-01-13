@@ -1,36 +1,28 @@
 package day12;
 
 import utils.Input;
+import utils.Solution;
 
 import java.util.List;
 
-public class day12 {
-    private static final String path = "src/main/resources/input_day12";
-    private static final List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
+public class day12 extends Solution {
+    private static final List<String> input = Input.getInput(PATH, Input.NEW_LINE_DELIMITER);
 
-    public static void main(String[] args) {
-
-        part1();
-        part2();
-    }
-
-    private static void part1() {
-        System.out.println("------ PART 1 ------");
+    @Override
+    public Object part1() {
         Ship ship = new Ship();
 
         input.forEach(ship::processMovement);
 
-        System.out.println(ship.getManhattanDistance());
+        return ship.getManhattanDistance();
     }
 
-    private static void part2() {
-        System.out.println("------ PART 2 ------");
+    @Override
+    public Object part2() {
         Ship newShip = new Ship();
 
-        for (String s : input) {
-            newShip.processMovement2(s);
-        }
+        input.forEach(newShip::processMovement2);
 
-        System.out.println(newShip.getManhattanDistance());
+        return newShip.getManhattanDistance();
     }
 }

@@ -1,27 +1,22 @@
 package day11;
 
 import utils.Input;
+import utils.Solution;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class day11 {
+public class day11 extends Solution {
 
-    public static final int colsCount = 98;
-    public static final int rowsCount = 93;
-    public static final String OCCUPIED = "#";
-    public static final String EMPTY = "L";
-    private static final String path = "src/main/resources/input_day11";
-    public static final List<String> input = Input.getCharInput(path);
-    public static List<String> copyOfState;
+    public final int colsCount = 98;
+    public final int rowsCount = 93;
+    public final String OCCUPIED = "#";
+    public final String EMPTY = "L";
+    public final List<String> input = Input.getCharInput(PATH);
+    public List<String> copyOfState;
 
-    public static void main(String[] args) {
-        part1();
-        part2();
-    }
-
-    private static void part1() {
-        System.out.println("------ PART 1 ------");
+    @Override
+    public Object part1() {
         boolean stateChanged;
         copyOfState = new ArrayList<>(input);
         do {
@@ -48,14 +43,14 @@ public class day11 {
             input.addAll(copyOfState);
         } while (stateChanged);
 
-        System.out.println("Answer: " + countOccupiedSeats());
+        return countOccupiedSeats();
     }
 
-    private static void part2() {
-        System.out.println("------ PART 2 ------");
+    @Override
+    public Object part2() {
         boolean stateChanged;
         input.clear();
-        input.addAll(Input.getCharInput(path));
+        input.addAll(Input.getCharInput(PATH));
         copyOfState = new ArrayList<>(input);
         do {
             // printTable();
@@ -81,11 +76,11 @@ public class day11 {
             input.addAll(copyOfState);
         } while (stateChanged);
 
-        System.out.println("Answer: " + countOccupiedSeats());
+        return countOccupiedSeats();
     }
 
 
-    private static void printTable() {
+    private void printTable() {
         for (int i = 0; i < rowsCount; i++) {
             for (int j = 0; j < colsCount; j++) {
                 System.out.print(checkInput(i, j));
@@ -95,20 +90,20 @@ public class day11 {
         System.out.print("\n-----\n");
     }
 
-    private static void setInput(int row, int column, String state) {
+    private void setInput(int row, int column, String state) {
         if (row >= 0 && row < rowsCount && column >= 0 && column < colsCount) {
             copyOfState.set(row * colsCount + column, state);
         }
     }
 
-    private static String checkInput(int row, int column) {
+    private String checkInput(int row, int column) {
         if (row < 0 || row >= rowsCount || column < 0 || column >= colsCount) {
             return "";
         }
         return input.get(row * colsCount + column);
     }
 
-    private static int countOccupiedSeats() {
+    private int countOccupiedSeats() {
         int counter = 0;
         for (String s : input) {
             if (s.equals(OCCUPIED)) {
@@ -118,7 +113,7 @@ public class day11 {
         return counter;
     }
 
-    private static int countDimensionsOccupiedSeats(int row, int column) {
+    private int countDimensionsOccupiedSeats(int row, int column) {
         int count = 0;
         int LEFT = -1;
         int RIGHT = 1;
@@ -139,7 +134,7 @@ public class day11 {
 
     }
 
-    private static int checkDimension(int vertical, int horizontal, int row, int column) {
+    private int checkDimension(int vertical, int horizontal, int row, int column) {
         int currRow = row + horizontal;
         int currCol = column + vertical;
         if (currRow < 0 || currRow >= rowsCount || currCol < 0 || currCol >= colsCount || checkInput(currRow, currCol).equals(EMPTY)) {
@@ -153,7 +148,7 @@ public class day11 {
     }
 
 
-    private static int countAdjacentOccupiedSeats(int row, int column) {
+    private int countAdjacentOccupiedSeats(int row, int column) {
         int count = 0;
         int currentRow = row - 1;
         int currentCol = column - 1;
@@ -190,7 +185,7 @@ public class day11 {
         return count;
     }
 
-    private static int checkCurrent(int currentRow, int currentCol) {
+    private int checkCurrent(int currentRow, int currentCol) {
         return checkInput(currentRow, currentCol).equals(OCCUPIED) ? 1 : 0;
     }
 }

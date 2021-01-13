@@ -1,21 +1,18 @@
 package day10;
 
 import utils.Input;
+import utils.Solution;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class day10 {
+public class day10 extends Solution {
 
-    private static final String path = "src/main/resources/input_day10";
-    public static final List<Integer> input = Input.getIntInput(path);
+    public static final List<Integer> input = Input.getIntInput(PATH);
 
-    public static void main(String[] args) {
-        part1();
-    }
-
-    private static void part1() {
+    @Override
+    public Object part1() {
         List<Integer> count = Arrays.asList(0, 0, 0, 0);
         input.add(0);
         input.sort(Comparator.naturalOrder());
@@ -27,6 +24,11 @@ public class day10 {
                 count.set(diff, count.get(diff) + 1);
             }
         }
-        System.out.println("Answer: " + (count.get(1) * count.get(3)));
+        return count.get(1) * count.get(3);
+    }
+
+    @Override
+    public Object part2() {
+        return null;
     }
 }

@@ -1,30 +1,25 @@
 package day08;
 
 import utils.Input;
+import utils.Solution;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class day08 {
+public class day08 extends Solution {
 
-    private static final String path = "src/main/resources/input_day08";
-    public static final List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
+    public static final List<String> input = Input.getInput(PATH, Input.NEW_LINE_DELIMITER);
 
-    public static void main(String[] args) {
-        part1();
-        part2();
-    }
-
-    private static void part1() {
-        System.out.println("------ PART 1 ------");
+    @Override
+    public Object part1() {
         CurrentPos curr = new CurrentPos();
-        System.out.println("There is " + (checkNoLoop(curr) ? "no loop" : "a loop"));
-        System.out.println("Answer: " + curr.getAcc());
+        checkNoLoop(curr);
+        return curr.getAcc();
 
     }
 
-    private static boolean checkNoLoop(CurrentPos curr) {
+    private boolean checkNoLoop(CurrentPos curr) {
         Set<Integer> oldPos = new HashSet<>();
         while (true) {
             oldPos.add(curr.getPos());
@@ -38,8 +33,8 @@ public class day08 {
         }
     }
 
-    private static void part2() {
-        System.out.println("------ PART 2 ------");
+    @Override
+    public Object part2() {
         String[] split;
 
         for (int i = 0; i < input.size(); i++) {
@@ -48,22 +43,21 @@ public class day08 {
             if (split[0].equals("nop")) {
                 input.set(i, "jmp " + split[1]);
                 if (checkNoLoop(curr)) {
-                    System.out.println("Answer: " + curr.getAcc());
-                    break;
+                    return curr.getAcc();
                 }
                 input.set(i, "nop " + split[1]);
             } else if (split[0].equals("jmp")) {
                 input.set(i, "nop " + split[1]);
                 if (checkNoLoop(curr)) {
-                    System.out.println("Answer: " + curr.getAcc());
-                    break;
+                    return curr.getAcc();
                 }
                 input.set(i, "jmp " + split[1]);
             }
         }
+        return "something gone wrong...";
     }
 
-    private static CurrentPos processPos(CurrentPos curr) {
+    private CurrentPos processPos(CurrentPos curr) {
         final String[] action = input.get(curr.getPos()).split(" ");
         final int value = Integer.parseInt(action[1]);
         switch (action[0]) {

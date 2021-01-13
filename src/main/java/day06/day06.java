@@ -1,45 +1,40 @@
 package day06;
 
 import utils.Input;
+import utils.Solution;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class day06 {
+public class day06 extends Solution {
 
-    private static final String path = "src/main/resources/input_day06";
-    public static final List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
+    public final List<String> input = Input.getInput(PATH, Input.NEW_LINE_DELIMITER);
 
-    public static void main(String[] args) {
-        part1();
-        part2();
-    }
-
-    private static void part2() {
-        System.out.println("------ PART 2 ------");
+    @Override
+    public Object part2() {
         List<Group> groupAnswers = getGroups();
         int sum = 0;
         for (Group group : groupAnswers) {
             commonAnswers(group);
             sum += group.getCount();
         }
-        System.out.println("Answer: " + sum);
+        return sum;
     }
 
-    private static void part1() {
-        System.out.println("------ PART 1 ------");
+    @Override
+    public Object part1() {
         List<Group> groupAnswers = getGroups();
         int sum = 0;
         for (Group group : groupAnswers) {
             distinctAnswers(group);
             sum += group.getCount();
         }
-        System.out.println("Answer: " + sum);
+        return sum;
     }
 
-    private static void commonAnswers(Group group) {
+    private void commonAnswers(Group group) {
         List<Character> common = new ArrayList<>();
         for (Character answer : group.getAnswers()) {
             if (group.getAnswers().stream().filter(Predicate.isEqual(answer)).count() == group.getNumberOfPeople()) {
@@ -50,12 +45,12 @@ public class day06 {
         group.setCount(group.getCommonAnswers().size());
     }
 
-    private static void distinctAnswers(Group group) {
+    private void distinctAnswers(Group group) {
         group.setDistinctAnswers(new HashSet<>(group.getAnswers()));
         group.setCount(group.getDistinctAnswers().size());
     }
 
-    private static List<Group> getGroups() {
+    private List<Group> getGroups() {
         List<Group> allGroups = new ArrayList<>();
         List<Character> result = new ArrayList<>();
         int numberOfPeople = 0;
@@ -77,7 +72,7 @@ public class day06 {
         return allGroups;
     }
 
-    private static Group createGroup(List<Character> answers, int numberOfPeople) {
+    private Group createGroup(List<Character> answers, int numberOfPeople) {
         Group newGroup = new Group();
         newGroup.getAnswers().addAll(answers);
         newGroup.setNumberOfPeople(numberOfPeople);

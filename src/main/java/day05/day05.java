@@ -1,6 +1,7 @@
 package day05;
 
 import utils.Input;
+import utils.Solution;
 
 import java.util.*;
 import java.util.stream.IntStream;
@@ -8,24 +9,22 @@ import java.util.stream.IntStream;
 import static java.util.function.Predicate.not;
 import static java.util.stream.Collectors.toSet;
 
-public class day05 {
+public class day05 extends Solution {
 
-    private static final String path = "src/main/resources/input_day05";
     private static final List<BoardingPass> passes = new ArrayList<>();
 
-    public static void main(String[] args) {
-        for (String s : Input.getInput(path)) {
+    void prepare() {
+        passes.clear();
+        for (String s : Input.getInput(PATH)) {
             BoardingPass temp = new BoardingPass();
             temp.setCode(s);
             passes.add(temp);
         }
-
-        part1();
-        part2();
     }
 
-    private static void part2() {
-        System.out.println("------ PART 2 ------");
+    @Override
+    public Object part2() {
+        prepare();
         for (BoardingPass bp : passes) {
             findSeat(bp);
             countId(bp);
@@ -34,34 +33,30 @@ public class day05 {
         final Set<Integer> idsStream = passes.stream().map(BoardingPass::getId).collect(toSet());
         Integer minimum = Collections.min(idsStream);
         Integer maximum = Collections.max(idsStream);
-        final Integer answer = IntStream.range(minimum, maximum)
+        return IntStream.range(minimum, maximum)
                 .boxed()
                 .filter(not(idsStream::contains))
                 .findAny()
                 .orElseThrow();
-        System.out.println("Answer: " + answer);
-
-
     }
 
 
-    private static void part1() {
-        System.out.println("------ PART 1 ------");
+    @Override
+    public Object part1() {
+        prepare();
         for (BoardingPass bp : passes) {
             findSeat(bp);
             countId(bp);
         }
 
-        final Integer max = passes.stream().map(BoardingPass::getId).max(Comparator.naturalOrder()).orElse(-1);
-        System.out.println("Answer: " + max);
-
+        return passes.stream().map(BoardingPass::getId).max(Comparator.naturalOrder()).orElse(-1);
     }
 
-    public static void countId(BoardingPass bp) {
+    public void countId(BoardingPass bp) {
         bp.setId(8 * bp.getRow() + bp.getColumn());
     }
 
-    public static void findSeat(BoardingPass bp) {
+    public void findSeat(BoardingPass bp) {
         int lowerRow = 0;
         int upperRow = 127;
         int lowerColumn = 0;
