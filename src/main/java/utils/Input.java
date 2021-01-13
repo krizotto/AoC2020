@@ -30,12 +30,16 @@ public class Input {
         return Optional.of(input).orElse(Collections.emptyList());
     }
 
-    public static List<Integer> getIntInput(String path) {
+    public static List<Integer> getIntInput(String path, String delimiter) {
         Path filePath = Paths.get(path);
         List<Integer> input = new ArrayList<>();
         Scanner scanner;
         try {
-            scanner = new Scanner(filePath);
+            if (delimiter == null) {
+                scanner = new Scanner(filePath);
+            } else {
+                scanner = new Scanner(filePath).useDelimiter(delimiter);
+            }
             while (scanner.hasNext()) {
                 if (scanner.hasNextInt()) {
                     input.add(scanner.nextInt());
@@ -48,6 +52,9 @@ public class Input {
             e.printStackTrace();
         }
         return Optional.of(input).orElse(Collections.emptyList());
+    }
+    public static List<Integer> getIntInput(String path) {
+        return getIntInput(path, null);
     }
 
     public static List<String> getInput(String path) {
