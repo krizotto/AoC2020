@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static final int MAX_SOLUTION_DAY = 13;
+    public static final int MAX_SOLUTION_DAY = 15;
 
     public static void main(String[] args) throws Exception {
 
