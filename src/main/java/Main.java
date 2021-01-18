@@ -1,4 +1,4 @@
-import utils.Solution;
+import org.krizotto.utils.Solution;
 
 import java.util.Scanner;
 
@@ -12,14 +12,18 @@ public class Main {
         System.out.printf("Please enter the day to solve (1-%d, 0 to quit, 99 to solve all): ", MAX_SOLUTION_DAY);
 
         final int day = scanner.nextInt();
+        double totalTime = 0;
 
         if (day == 99) {
             for (int i = 1; i <= MAX_SOLUTION_DAY; i++) {
                 long startTime = System.nanoTime();
                 getSolution(i);
                 long stopTime = System.nanoTime();
-                System.out.printf("Execution time: %.2f ms.%n", ((double) stopTime - (double) startTime) / 1000000);
+                final double execTime = ((double) stopTime - (double) startTime) / 1000000;
+                totalTime += execTime;
+                System.out.printf("Execution time: %.2f ms.%n", execTime);
             }
+            System.out.printf("***********%nTotal execution time: %.3f s.", totalTime/1000);
         }
 
         if (day > 0 && day < 26) {
