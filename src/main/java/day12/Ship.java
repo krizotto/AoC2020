@@ -139,17 +139,17 @@ public class Ship {
 
     private void turnWaypoint(char side, int value) {
         //assume that every turn is clockwise
-        int angle = value;
+        int ang = value;
 
         //if counter-clockwise
         if (side == LEFT_TURN) {
-            angle = 360 - value;
+            ang = 360 - value;
         }
 
         int tempX = this.waypointX;
         int tempY = this.waypointY;
 
-        switch (angle) {
+        switch (ang) {
             case 0:
                 break;
             case 90:
@@ -165,7 +165,7 @@ public class Ship {
                 this.waypointY = tempX;
                 break;
             default:
-                System.out.println("Invalid turn angle");
+                System.out.println("Invalid turn ang");
                 break;
         }
     }

@@ -8,19 +8,18 @@ import java.util.List;
 
 public class day11 extends Solution {
 
-    public final int colsCount = 98;
-    public final int rowsCount = 93;
-    public final String OCCUPIED = "#";
-    public final String EMPTY = "L";
-    public final List<String> input = Input.getCharInput(PATH);
-    public List<String> copyOfState;
+    private static final int colsCount = 98;
+    private static final int rowsCount = 93;
+    private static final String OCCUPIED = "#";
+    private static final String EMPTY = "L";
+    private static final List<String> input = Input.getCharInput(path);
+    private List<String> copyOfState;
 
     @Override
     public Object part1() {
         boolean stateChanged;
         copyOfState = new ArrayList<>(input);
         do {
-            // printTable();
             stateChanged = false;
             for (int r = 0; r < rowsCount; r++) {
                 for (int c = 0; c < colsCount; c++) {
@@ -31,11 +30,9 @@ public class day11 extends Solution {
                             setInput(r, c, OCCUPIED);
                             stateChanged = true;
                         }
-                    } else if (s.equals(OCCUPIED)) {
-                        if (occupiedSeats >= 4) {
-                            setInput(r, c, EMPTY);
-                            stateChanged = true;
-                        }
+                    } else if (s.equals(OCCUPIED) && occupiedSeats >= 4) {
+                        setInput(r, c, EMPTY);
+                        stateChanged = true;
                     }
                 }
             }
@@ -50,10 +47,9 @@ public class day11 extends Solution {
     public Object part2() {
         boolean stateChanged;
         input.clear();
-        input.addAll(Input.getCharInput(PATH));
+        input.addAll(Input.getCharInput(path));
         copyOfState = new ArrayList<>(input);
         do {
-            // printTable();
             stateChanged = false;
             for (int r = 0; r < rowsCount; r++) {
                 for (int c = 0; c < colsCount; c++) {
@@ -64,11 +60,9 @@ public class day11 extends Solution {
                             setInput(r, c, OCCUPIED);
                             stateChanged = true;
                         }
-                    } else if (s.equals(OCCUPIED)) {
-                        if (occupiedSeats >= 5) {
-                            setInput(r, c, EMPTY);
-                            stateChanged = true;
-                        }
+                    } else if (s.equals(OCCUPIED) && occupiedSeats >= 5) {
+                        setInput(r, c, EMPTY);
+                        stateChanged = true;
                     }
                 }
             }
@@ -79,16 +73,6 @@ public class day11 extends Solution {
         return countOccupiedSeats();
     }
 
-
-    private void printTable() {
-        for (int i = 0; i < rowsCount; i++) {
-            for (int j = 0; j < colsCount; j++) {
-                System.out.print(checkInput(i, j));
-            }
-            System.out.print("\n");
-        }
-        System.out.print("\n-----\n");
-    }
 
     private void setInput(int row, int column, String state) {
         if (row >= 0 && row < rowsCount && column >= 0 && column < colsCount) {
@@ -115,20 +99,20 @@ public class day11 extends Solution {
 
     private int countDimensionsOccupiedSeats(int row, int column) {
         int count = 0;
-        int LEFT = -1;
-        int RIGHT = 1;
-        int UP = -1;
-        int MIDDLE = 0;
-        int DOWN = 1;
+        int left = -1;
+        int right = 1;
+        int up = -1;
+        int middle = 0;
+        int down = 1;
 
-        count += checkDimension(LEFT, UP, row, column);
-        count += checkDimension(MIDDLE, UP, row, column);
-        count += checkDimension(RIGHT, UP, row, column);
-        count += checkDimension(LEFT, MIDDLE, row, column);
-        count += checkDimension(RIGHT, MIDDLE, row, column);
-        count += checkDimension(LEFT, DOWN, row, column);
-        count += checkDimension(MIDDLE, DOWN, row, column);
-        count += checkDimension(RIGHT, DOWN, row, column);
+        count += checkDimension(left, up, row, column);
+        count += checkDimension(middle, up, row, column);
+        count += checkDimension(right, up, row, column);
+        count += checkDimension(left, middle, row, column);
+        count += checkDimension(right, middle, row, column);
+        count += checkDimension(left, down, row, column);
+        count += checkDimension(middle, down, row, column);
+        count += checkDimension(right, down, row, column);
 
         return count;
 

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class day14 extends Solution {
 
-    private final List<String> input = Input.getInput(PATH, Input.NEW_LINE_DELIMITER);
+    private final List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
 
     @Override
     public Object part1() {

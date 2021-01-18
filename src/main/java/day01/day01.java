@@ -10,7 +10,7 @@ public class day01 extends Solution {
 
     @Override
     public Object part2() {
-        List<Integer> input = Input.getIntInput(PATH);
+        List<Integer> input = Input.getIntInput(path);
         int answer = -1;
 
         for (Integer first : input) {
@@ -28,7 +28,7 @@ public class day01 extends Solution {
     public Object part1() {
         int lowerAnswer = -1;
         int higherAnswer = -1;
-        List<Integer> input = Input.getIntInput(PATH);
+        List<Integer> input = Input.getIntInput(path);
         Collections.sort(input);
 
         int bottom = 0;

@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bag {
-    public static final String SHINY_GOLD = "shiny gold";
+    private static final String SHINY_GOLD = "shiny gold";
     private final List<String> contains = new ArrayList<>();
     private final List<Integer> quantities = new ArrayList<>();
     private String color;
-
-    public Bag() {
-    }
 
     public String getColor() {
         return color;
@@ -31,7 +28,7 @@ public class Bag {
 
 
     boolean containsOther() {
-        return this.contains.size() != 0;
+        return !this.contains.isEmpty();
     }
 
     boolean containsShinyGold() {

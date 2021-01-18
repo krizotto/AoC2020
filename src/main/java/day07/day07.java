@@ -9,14 +9,14 @@ import java.util.Optional;
 
 public class day07 extends Solution {
 
-    public static final String BAGS_CONTAIN_REGEX = "\\s?bags contain\\s?";
-    public static final String BAGS_REGEX = "\\s?\\bbags?\\b([,.]?)\\s?";
-    public static final List<String> input = Input.getInput(PATH, "\\.\n");
-    public final List<Bag> rules = fillRules();
+    private static final String BAGS_CONTAIN_REGEX = "\\s?bags contain\\s?";
+    private static final String BAGS_REGEX = "\\s?\\bbags?\\b([,.]?)\\s?";
+    private static final List<String> input = Input.getInput(path, "\\.\n");
+    private final List<Bag> rules = fillRules();
     private static final String SHINY_GOLD = "shiny gold";
 
     private List<Bag> fillRules() {
-        List<Bag> rules = new ArrayList<>();
+        List<Bag> tempRules = new ArrayList<>();
         for (String s : input) {
             Bag temp = new Bag();
             final String[] split = s.split(BAGS_CONTAIN_REGEX);
@@ -31,10 +31,10 @@ public class day07 extends Solution {
                 temp.getQuantities().add(quantity);
                 temp.getContains().add(color);
             }
-            rules.add(temp);
+            tempRules.add(temp);
         }
 
-        return rules;
+        return tempRules;
     }
 
     private int doesContainShinyGold(Bag rule) {
@@ -55,7 +55,7 @@ public class day07 extends Solution {
     }
 
     private int getCapacity(Bag bag) {
-        if (bag.getContains().size() == 0) {
+        if (bag.getContains().isEmpty()) {
             return 0;
         } else {
             int total = 0;

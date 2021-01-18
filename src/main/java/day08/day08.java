@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class day08 extends Solution {
 
-    public static final List<String> input = Input.getInput(PATH, Input.NEW_LINE_DELIMITER);
+    private static final List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
 
     @Override
     public Object part1() {
@@ -70,6 +70,9 @@ public class day08 extends Solution {
                 break;
             case "jmp":
                 curr.setPos(curr.getPos() + value);
+                break;
+            default:
+                System.out.println("unhandled...");
                 break;
         }
         return curr;

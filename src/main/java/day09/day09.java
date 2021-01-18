@@ -8,13 +8,14 @@ import java.util.List;
 
 public class day09 extends Solution {
 
-    public final int preambleSize = 25;
-    public final List<Integer> input = Input.getIntInput(PATH);
-    public int invalidNumber;
+    private static final int preambleSize = 25;
+    private static final List<Integer> input = Input.getIntInput(path);
+    private int invalidNumber;
 
     @Override
     public Object part2() {
-        int beginIndex, endIndex;
+        int beginIndex;
+        int endIndex;
         for (int i = 0; i < input.size(); i++) {
             int sum = 0;
             for (int j = i; j < input.size(); j++) {
@@ -24,8 +25,8 @@ public class day09 extends Solution {
                     endIndex = j;
                     List<Integer> subList = input.subList(beginIndex, endIndex + 1);
                     if (subList.size() > 1) {
-                        int min = subList.stream().min(Comparator.naturalOrder()).get();
-                        int max = subList.stream().max(Comparator.naturalOrder()).get();
+                        int min = subList.stream().min(Comparator.naturalOrder()).orElseThrow();
+                        int max = subList.stream().max(Comparator.naturalOrder()).orElseThrow();
                         return (min + max);
                     }
                     break;

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class day10 extends Solution {
 
-    public static final List<Integer> input = Input.getIntInput(PATH);
+    private static final List<Integer> input = Input.getIntInput(path);
 
     @Override
     public Object part1() {

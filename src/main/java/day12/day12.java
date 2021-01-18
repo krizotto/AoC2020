@@ -6,7 +6,7 @@ import utils.Solution;
 import java.util.List;
 
 public class day12 extends Solution {
-    private static final List<String> input = Input.getInput(PATH, Input.NEW_LINE_DELIMITER);
+    private static final List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
 
     @Override
     public Object part1() {

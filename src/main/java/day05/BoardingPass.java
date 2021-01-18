@@ -6,9 +6,6 @@ public class BoardingPass {
     private int column;
     private int id;
 
-    public BoardingPass() {
-    }
-
     public String getCode() {
         return code;
     }

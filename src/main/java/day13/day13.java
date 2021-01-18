@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class day13 extends Solution {
-    private final List<String> input = Input.getInput(PATH, Input.NEW_LINE_DELIMITER);
+    private final List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
     private final List<Integer> availableBuses = new ArrayList<>();
     private final int timestamp = Integer.parseInt(input.get(0));
 

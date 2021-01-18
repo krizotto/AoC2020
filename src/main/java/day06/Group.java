@@ -12,9 +12,6 @@ public class Group {
     private int count;
     private int numberOfPeople;
 
-    public Group() {
-    }
-
     public List<Character> getAnswers() {
         return answers;
     }

@@ -15,7 +15,7 @@ public class day05 extends Solution {
 
     void prepare() {
         passes.clear();
-        for (String s : Input.getInput(PATH)) {
+        for (String s : Input.getInput(path)) {
             BoardingPass temp = new BoardingPass();
             temp.setCode(s);
             passes.add(temp);

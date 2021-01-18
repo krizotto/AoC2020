@@ -10,7 +10,7 @@ public class day02 extends Solution {
 
     @Override
     public Object part2() {
-        List<String> input = Input.getInput(PATH);
+        List<String> input = Input.getInput(path);
         int totalCorrect = 0;
 
         for (int i = 2; i < input.size(); i += 3) {
@@ -37,7 +37,7 @@ public class day02 extends Solution {
 
     @Override
     public Object part1() {
-        List<String> input = Input.getInput(PATH);
+        List<String> input = Input.getInput(path);
         int totalCorrect = 0;
 
         for (int i = 2; i < input.size(); i += 3) {

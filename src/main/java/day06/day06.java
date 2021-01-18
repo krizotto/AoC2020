@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 
 public class day06 extends Solution {
 
-    public final List<String> input = Input.getInput(PATH, Input.NEW_LINE_DELIMITER);
+    public final List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
 
     @Override
     public Object part2() {

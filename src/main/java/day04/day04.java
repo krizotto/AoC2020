@@ -11,7 +11,7 @@ public class day04 extends Solution {
 
     @Override
     public Object part2() {
-        List<String> input = Input.getInput(PATH, Input.NEW_LINE_DELIMITER);
+        List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
         List<Passport> passports = getPassports(input);
 
         //Extended validation
@@ -23,13 +23,13 @@ public class day04 extends Solution {
         }
 
         return passports.stream()
-                .filter(passport -> passport.isPassportValid())
+                .filter(Passport::isPassportValid)
                 .count();
     }
 
     @Override
     public Object part1() {
-        List<String> input = Input.getInput(PATH, Input.NEW_LINE_DELIMITER);
+        List<String> input = Input.getInput(path, Input.NEW_LINE_DELIMITER);
         List<Passport> passports = getPassports(input);
 
         //EasyValidation
@@ -38,7 +38,7 @@ public class day04 extends Solution {
         }
 
         return passports.stream()
-                .filter(passport -> passport.isPassportValid())
+                .filter(Passport::isPassportValid)
                 .count();
     }
 
@@ -95,6 +95,9 @@ public class day04 extends Solution {
                     break;
                 case "cid":
                     tmpPassport.setCountryId(value);
+                    break;
+                default:
+                    System.out.println("unhandled...");
                     break;
             }
         }

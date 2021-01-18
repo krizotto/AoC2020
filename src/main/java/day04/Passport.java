@@ -14,11 +14,6 @@ public class Passport {
     private String passportId; //pid (Passport ID)
     private String countryId; //cid (Country ID)
     private boolean isPassportValid;
-    private boolean isNorthPoleCredential;
-
-    public Passport() {
-
-    }
 
     public String getBirthYear() {
         return birthYear;
@@ -92,29 +87,14 @@ public class Passport {
         isPassportValid = passportValid;
     }
 
-    public void setNorthPoleCredential(boolean northPoleCredential) {
-        isNorthPoleCredential = northPoleCredential;
-    }
-
     public void easyValidate() {
-        if (this.getBirthYear() != null &&
+        this.setPassportValid(this.getBirthYear() != null &&
                 this.getIssueYear() != null &&
                 this.getExpirationYear() != null &&
                 this.getHeight() != null &&
                 this.getHairColor() != null &&
                 this.getEyeColor() != null &&
-                this.getPassportId() != null) {
-            if (this.getCountryId() != null) {
-                this.setPassportValid(true);
-                this.setNorthPoleCredential(false);
-            } else {
-                this.setPassportValid(true);
-                this.setNorthPoleCredential(true);
-            }
-        } else {
-            this.setPassportValid(false);
-            this.setNorthPoleCredential(false);
-        }
+                this.getPassportId() != null);
     }
 
     public void extendedValidation() {
@@ -135,44 +115,41 @@ public class Passport {
         isValid &= passportIdValidation();
         //check countryId
         this.setPassportValid(isValid);
-        if (isValid) {
-            this.setNorthPoleCredential(this.getCountryId() == null);
-        }
     }
 
     private boolean birthYearValidation() {
         if (this.getBirthYear().length() == 4) {
-            final int birthYear = Integer.parseInt(this.getBirthYear());
-            return birthYear >= 1920 && birthYear <= 2002;
+            final int birth = Integer.parseInt(this.getBirthYear());
+            return birth >= 1920 && birth <= 2002;
         }
         return false;
     }
 
     private boolean issueYearValidation() {
         if (this.getBirthYear().length() == 4) {
-            final int issueYear = Integer.parseInt(this.getIssueYear());
-            return issueYear >= 2010 && issueYear <= 2020;
+            final int issue = Integer.parseInt(this.getIssueYear());
+            return issue >= 2010 && issue <= 2020;
         }
         return false;
     }
 
     private boolean expirationYearValidation() {
         if (this.getExpirationYear().length() == 4) {
-            final int expirationYear = Integer.parseInt(this.getExpirationYear());
-            return expirationYear >= 2020 && expirationYear <= 2030;
+            final int expiration = Integer.parseInt(this.getExpirationYear());
+            return expiration >= 2020 && expiration <= 2030;
         }
         return false;
     }
 
     private boolean heightValidation() {
-        final String height = this.getHeight();
+        final String hgt = this.getHeight();
 
-        final String substring = height.substring(0, height.length() - 2);
+        final String substring = hgt.substring(0, hgt.length() - 2);
         if (substring.equals("")) return false;
         int value = Integer.parseInt(substring);
-        if (height.contains("cm")) {
+        if (hgt.contains("cm")) {
             return value >= 150 && value <= 193;
-        } else if (height.contains("in")) {
+        } else if (hgt.contains("in")) {
             return value >= 59 && value <= 76;
         }
         return false;

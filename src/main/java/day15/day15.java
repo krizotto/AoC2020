@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class day15 extends Solution {
-    private final List<Integer> input = Input.getIntInput(PATH, ",");
+    private final List<Integer> input = Input.getIntInput(path, ",");
 
     @Override
     public Object part1() {

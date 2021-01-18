@@ -7,9 +7,9 @@ import java.util.List;
 
 public class day03 extends Solution {
 
-    public final int X_MAX = 31;
-    public final int Y_MAX = 323;
-    public final char[][] map = getMapFromInput();
+    private static final int xMax = 31;
+    private static final int yMax = 323;
+    private final char[][] map = getMapFromInput();
 
     @Override
     public Object part1() {
@@ -27,9 +27,9 @@ public class day03 extends Solution {
 
 
     private char[][] getMapFromInput() {
-        List<String> input = Input.getInput(PATH);
+        List<String> input = Input.getInput(path);
 
-        char[][] map = new char[X_MAX][Y_MAX];
+        char[][] tempMap = new char[xMax][yMax];
 
         int currentX;
         int currentY = 0;
@@ -38,12 +38,12 @@ public class day03 extends Solution {
             currentX = 0;
             final char[] line = s.toCharArray();
             for (char c : line) {
-                map[currentX][currentY] = c;
+                tempMap[currentX][currentY] = c;
                 currentX++;
             }
             currentY++;
         }
-        return map;
+        return tempMap;
     }
 
     private int countTrees(int xSlope, int ySlope) {
@@ -51,11 +51,11 @@ public class day03 extends Solution {
         int currentY = 0;
         int countTrees = 0;
 
-        while (currentY < Y_MAX - ySlope) {
+        while (currentY < yMax - ySlope) {
             currentX += xSlope;
             currentY += ySlope;
-            if (currentX >= X_MAX) {
-                currentX -= X_MAX;
+            if (currentX >= xMax) {
+                currentX -= xMax;
             }
             if (map[currentX][currentY] == '#') {
                 countTrees++;
