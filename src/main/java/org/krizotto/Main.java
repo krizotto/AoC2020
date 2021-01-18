@@ -1,3 +1,5 @@
+package org.krizotto;
+
 import org.krizotto.utils.Solution;
 
 import java.util.Scanner;

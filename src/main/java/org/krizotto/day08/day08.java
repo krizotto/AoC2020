@@ -26,7 +26,7 @@ public class day08 extends Solution {
             if (curr.getPos() == input.size()) {
                 return true;
             }
-            curr = processPos(curr);
+            processPos(curr);
             if (oldPos.contains(curr.getPos())) {
                 return false;
             }
@@ -57,7 +57,7 @@ public class day08 extends Solution {
         return "something gone wrong...";
     }
 
-    private CurrentPos processPos(CurrentPos curr) {
+    private void processPos(CurrentPos curr) {
         final String[] action = input.get(curr.getPos()).split(" ");
         final int value = Integer.parseInt(action[1]);
         switch (action[0]) {
@@ -75,6 +75,5 @@ public class day08 extends Solution {
                 System.out.println("unhandled...");
                 break;
         }
-        return curr;
     }
 }
