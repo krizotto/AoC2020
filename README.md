@@ -22,6 +22,7 @@ Day   | Part 1             | Part 2
 13    | :white_check_mark: | :white_check_mark:
 14    | :white_check_mark: | :white_check_mark:
 15    | :white_check_mark: | :white_check_mark:
+16    | :white_check_mark: | :x:
 
 
 
